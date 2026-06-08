@@ -1,0 +1,32 @@
+name: crystal-graph
+channels:
+  - pytorch
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pip
+  - numpy
+  - scipy
+  - pandas
+  - scikit-learn
+  - matplotlib
+  - seaborn
+  - tqdm
+  - pyyaml
+  - jupyter
+  - pip:
+      - torch==2.1.0
+      - torch-geometric==2.4.0
+      - pymatgen>=2023.10
+      - matminer>=0.9
+      - mp-api>=0.39
+      - xgboost
+      - optuna
+      - wandb
+      - hydra-core
+      - omegaconf
+      - dvc
+      - pytest
+      - pytest-cov
+      - ruff
+      - black

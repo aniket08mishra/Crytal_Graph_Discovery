@@ -1,0 +1,32 @@
+__pycache__/
+*.pyc
+*.pyo
+.ipynb_checkpoints/
+.venv/
+venv/
+.env
+
+# Data
+data/raw/*
+data/processed/*
+data/external/*
+!data/**/.gitkeep
+
+# Artifacts
+runs/
+wandb/
+mlruns/
+outputs/
+checkpoints/
+*.ckpt
+*.pt
+
+# Reports
+reports/figures/*.png
+!reports/figures/.gitkeep
+
+# OS
+.DS_Store
+*.swp
+.idea/
+.vscode/

@@ -1,0 +1,33 @@
+# Reproducible pipeline definition (run `dvc repro` after configuring remote storage).
+stages:
+  ingest:
+    cmd: python scripts/ingest_mp.py --config configs/data/mp_default.yaml
+    deps:
+      - scripts/ingest_mp.py
+      - configs/data/mp_default.yaml
+      - src/data/ingest_mp.py
+    outs:
+      - data/raw/mp_dataset.parquet
+      - data/raw/mp_metadata.json
+
+  build_graphs:
+    cmd: python scripts/build_graphs.py --config configs/data/graphs_default.yaml
+    deps:
+      - scripts/build_graphs.py
+      - configs/data/graphs_default.yaml
+      - src/data/build_graphs.py
+      - src/features/graph_construction.py
+      - data/raw/mp_dataset.parquet
+    outs:
+      - data/processed/graphs
+
+  train_cgcnn:
+    cmd: python scripts/train.py --config configs/experiment/cgcnn_baseline.yaml
+    deps:
+      - scripts/train.py
+      - configs/experiment/cgcnn_baseline.yaml
+      - src/models/cgcnn.py
+      - src/training/trainer.py
+      - data/processed/graphs
+    outs:
+      - runs/cgcnn_baseline
